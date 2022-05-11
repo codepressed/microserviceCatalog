@@ -3,6 +3,7 @@ package edu.uoc.epcsd.showcatalog.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,6 +22,21 @@ public class Show {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "price")
+    private String price;
+
+    @Column(name = "duration")
+    private String duration;
+
+    @Column(name = "integer")
+    private Integer capacity;
+
+    @Column(name = "onSaleDate")
+    private Date onSaleDate;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(

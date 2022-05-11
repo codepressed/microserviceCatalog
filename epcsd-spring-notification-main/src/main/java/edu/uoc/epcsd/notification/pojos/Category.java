@@ -2,6 +2,9 @@ package edu.uoc.epcsd.notification.pojos;
 
 import lombok.*;
 
+import java.util.Date;
+import java.util.List;
+
 @ToString(exclude = "shows")
 @Getter
 @Setter
@@ -14,5 +17,7 @@ public class Category {
     private Long id;
 
     private String name;
+
+    private List<Show> shows;
 
 }
