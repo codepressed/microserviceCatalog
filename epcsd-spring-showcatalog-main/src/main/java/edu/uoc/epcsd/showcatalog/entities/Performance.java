@@ -1,5 +1,7 @@
 package edu.uoc.epcsd.showcatalog.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,18 +20,19 @@ public class Performance {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        @Column(name = "name")
+        @Column(name = "date")
         private Date date;
 
         @Column(name = "streamingURL")
         private String streamingURL;
 
         @Column(name = "remainingSeats")
-        private String remainingSeats;
+        private Integer remainingSeats;
 
         @Column(name = "status")
         private String status;
 
-        @ManyToOne(cascade = CascadeType.MERGE)
+        @JsonIgnore
+        @ManyToOne
         private Show show;
 }

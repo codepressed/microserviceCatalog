@@ -12,20 +12,37 @@ This is a microservices built show catalog application built with the following 
 - Log: Log4j2
 - Doc generation from API: springdoc-openapi
 - Server HTTP: Tomcat
+- Swagger
 
 # Building and running the project
 
-## Building
-1st of all JARs should be created from every service. From inside a project running the shell, should be fun:
-mvn clean package
-and 2 differents JARs will be generated (showcatalog-VERSION.jar & notification-VERSION.jar).
+## Setting up Microservices
 
-## Running
+Setting up the microservices:
 ```
 docker compose
 ```
 
+## Setting up Java project
+
+Downloading and running Java project:
 ```
+cd epcsd-spring-showcatalog-main
+mvn clean install
 java -jar showcatalog-VERSION.jar
+
+cd epcsd-spring-notification-main
+mvn clean install
 java -jar notification-VERSION.jar
 ```
+
+## Urls to test the API:
+![Swagger image](/assets/img/swagger.png)
+Swagger: http://localhost:18081/swagger-ui/index.html
+
+![OpenApi](/assets/img/openapi.png)
+OpenApi: http://localhost:18081/v3/api-docs/
+
+## Postman
+![PostMan](/assets/img/postman.png)
+Official website: https://www.postman.com/

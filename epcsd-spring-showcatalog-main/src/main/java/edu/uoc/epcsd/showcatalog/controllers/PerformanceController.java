@@ -3,7 +3,9 @@ package edu.uoc.epcsd.showcatalog.controllers;
 import edu.uoc.epcsd.showcatalog.entities.Category;
 import edu.uoc.epcsd.showcatalog.entities.Performance;
 import edu.uoc.epcsd.showcatalog.entities.Show;
+import edu.uoc.epcsd.showcatalog.entities.dto.PerformanceDTO;
 import edu.uoc.epcsd.showcatalog.repositories.PerformanceRepository;
+import edu.uoc.epcsd.showcatalog.repositories.ShowRepository;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class PerformanceController {
     @Autowired
     private PerformanceRepository performanceRepository;
 
+    @Autowired
+    private ShowRepository showRepository;
+
     @GetMapping("/")
     public List<Performance> getPerformances(){
         return performanceRepository.findAll();
@@ -40,20 +45,28 @@ public class PerformanceController {
     @GetMapping("/byShow/id/{id}")
     @ResponseStatus(HttpStatus.OK)
     public List<Performance> getPerformanceByShow_Name(@PathVariable("id") Long id) {
-        log.trace("getAllPerformanceByShowId");
+        log.info("getAllPerformanceByShowId");
         return performanceRepository.findPerformanceByShow_Id(id);
     }
 
     @GetMapping("/byShow/name/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<Performance> getPerformanceByShow_Name(@PathVariable("name") String name) {
-        log.trace("getAllPerformanceByShowName");
+        log.info("getAllPerformanceByShowName");
         return performanceRepository.findPerformanceByShow_Name(name);
     }
 
     @PostMapping("/")
-    public Performance createPerformance(@Valid @RequestBody Performance performance){
-        log.trace("createPerformance");
+    public Performance createPerformance(@Valid @RequestBody PerformanceDTO performanceDTO){
+        log.info("createPerformance");
+        Show show = showRepository.findById(performanceDTO.getShow()).get();
+        Performance performance = performanceRepository.save(Performance.builder()
+                .show(show)
+                .status(performanceDTO.getStatus())
+                .date(performanceDTO.getDate())
+                .remainingSeats(performanceDTO.getRemainingSeats())
+                .streamingURL(performanceDTO.getStreamingURL())
+                .build());
         return performanceRepository.save(performance);
     }
 
@@ -61,7 +74,7 @@ public class PerformanceController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Map<String, Boolean> deletePerformance(@PathVariable("performanceId") Long performanceId)
             throws ResourceNotFoundException {
-        log.trace("deleteCategory");
+        log.info("deleteCategory");
         Performance performance = performanceRepository.findById(performanceId)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found for this id: " + performanceId));
         performanceRepository.delete(performance);

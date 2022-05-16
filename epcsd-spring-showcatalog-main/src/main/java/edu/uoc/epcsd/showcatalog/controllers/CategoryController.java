@@ -25,21 +25,20 @@ public class CategoryController {
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public List<Category> getAllCategories() {
-        log.trace("getAllCategories");
-
+        log.info("getAllCategories");
         return categoryRepository.findAll();
     }
 
     @PostMapping("/")
     public Category createCategory(@Valid @RequestBody Category category){
-        log.trace("createCategory");
+        log.info("createCategory");
         return categoryRepository.save(category);
     }
 
     @DeleteMapping("/{categoryId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Map<String, Boolean> deleteCategory(@PathVariable("categoryId") Long categoryId) throws ResourceNotFoundException{
-        log.trace("deleteCategory");
+        log.info("deleteCategory");
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResourceNotFoundException("Category not found for this id: " + categoryId));
         categoryRepository.delete(category);

@@ -1,5 +1,6 @@
 package edu.uoc.epcsd.showcatalog.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -42,7 +43,9 @@ public class Show {
     @JoinTable(
             name = "show_categories",
             joinColumns = @JoinColumn(name = "id_show"),
-            inverseJoinColumns = @JoinColumn(name = "id_category")
-    )
+            inverseJoinColumns = @JoinColumn(name = "id_category"))
     private List<Category> categories;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "show", cascade = CascadeType.MERGE)
+    private List<Performance> performances;
 }

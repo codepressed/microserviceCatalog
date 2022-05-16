@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "3a8d103a-21e9-4694-9311-30dd366952f6",
+		"name": "showCatalogAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addCategory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"diversion\",\r\n    \"description\":\"peliculas divertidas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:18081/category/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"category",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "nombreCategoria",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "descriptionCategoria",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addShow",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"trumon\",\r\n    \"image\":\"https://www.google.com/image.png\",\r\n    \"price\":\"20€\",\r\n    \"duration\":\"5h\",\r\n    \"capacity\":\"50\",\r\n    \"categories\":[\"1\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:18081/show/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"show",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addPerformance",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"streamingURL\":\"https://www.twitch.tv/daniapesteguia\",\r\n    \"remainingSeats\":\"50\",\r\n    \"status\":\"Open\",\r\n    \"show\":{\"show_id\":1}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:18081/performance/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"performance",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "getPerformance",
+					"host": [
+						"getPerformance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPerformance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "getPerformance",
+					"host": [
+						"getPerformance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPerformanceByShowName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:18081/performance/byShow/name/?name=trumon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"performance",
+						"byShow",
+						"name",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "trumon"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPerformanceByShowId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:18081/performance/byShow/id/?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"performance",
+						"byShow",
+						"id",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getShowByCategoryName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:18081/show/byCategory/name/?name=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"show",
+						"byCategory",
+						"name",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getShowByCategoryId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:18081/performance/byShow/id/?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "18081",
+					"path": [
+						"performance",
+						"byShow",
+						"id",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCategory",
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "deleteShow",
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "deletePerformance",
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
